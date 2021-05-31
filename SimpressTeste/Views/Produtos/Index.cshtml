@@ -1,0 +1,76 @@
+﻿@{
+    List<MVC_TesteSimpress.Models.Produto> produtos = ViewBag.Produtos;
+    List<MVC_TesteSimpress.Models.Categoria> categorias = ViewBag.Categorias;
+}
+<div class="align-items-xl-center mx-auto mt-lg-5">
+    <div class="container-fluid">
+        <form action="/produtos/SalvarProduto" method="post">
+            <div>
+                <div class="mt-2">
+                    <label for="nome" class="mb-1">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome">
+                </div>
+                <div class="mt-2">
+                    <label for="descricao" class="mb-1">Descricão:</label>
+                    <input type="text" class="form-control" id="descricao" name="descricao">
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <label for="tipoos" class="mb-1">Categoria do Produto:</label>
+                <select class="form-control mt-2 dropdown w-50" id="categoria" name="CategoriaID">
+                    @{
+                        foreach (var c in categorias)
+                        {
+                            <option value="@c.id"> @c.nome</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="gap-2 d-md-flex justify-content-md-end mb-xl-5 align-top">
+                <button class="btn btn-primary me-md-2" type="submit">Cadastrar</button>
+                <input type="checkbox" class="form-check-input" id="perecivel" name="perecivel">
+                <label class="form-check-label" for="perecivel">Perecivel</label>
+            </div>
+        </form>
+    </div>
+
+    <div class="container-fluid">
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Categoria do produto</th>
+                        <th>Ativo</th>
+                        <th>Perecivel</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        foreach (var p in produtos)
+                        {
+                            <tr>
+                                <td>@p.id</td>
+                                <td>@p.nome</td>
+                                <td>@p.descricao</td>
+                                <td>@p.idCategoria</td>
+                                <td>@p.ativo</td>
+                                <td>@p.perecivel</td>
+                                <td>
+                                    <a href="/Produtos/EditarProduto/@p.id" type="button" class="btn btn-success">Atualizar</a>
+                                    <a href="/Produtos/DeletarProduto/@p.id" type="button" class="btn btn-danger">Deletar</a>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

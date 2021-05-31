@@ -1,0 +1,37 @@
+﻿@{
+    MVC_TesteSimpress.Models.Produto produto = ViewBag.Produto;
+    List<MVC_TesteSimpress.Models.Categoria> categorias = ViewBag.Categorias;
+
+}
+<div class="align-items-xl-center mx-auto mt-lg-5">
+    <form action="/produtos/AtualizarProduto" method="post">
+        <div class="form-group mt-3">
+            <label for="">Nome:</label>
+            <input type="text" class="form-control" id="nome" value="@produto.nome" name="Nome">
+        </div>
+        <div class="form-group mt-3">
+            <label for="Descricao">Descricao:</label>
+            <input type="text" class="form-control" id="Descricao" value="@produto.descricao" name="Descricao">
+        </div>
+        <div class="form-group mt-3">
+            <label for="tipoos">Categoria do Produto</label>
+            <select class="form-group" id="categorias" name="CategoriaID">
+                @{
+                    foreach (var c in categorias)
+                    {
+                        <option value="@c.id"> @c.nome</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group form-check mt-3">
+            <input type="checkbox" class="form-check-input" id="ativo" name="Ativo" checked="@{var ck = produto.ativo ? true : false; }" value="@{var val = produto.ativo ? true : false; }">
+            <label class="form-check-label" for="ativo">ativo</label>
+        </div>
+        <div class="form-group form-check mt-3">
+            <input type="checkbox" class="form-check-input" id="Perecivel" name="Perecivel" checked="@{var ckd = produto.perecivel ? true : false; }" value="@{var value = produto.perecivel ? true : false; }">
+            <label class="form-check-label" for="Perecivel">Perecivel</label>
+        </div>
+        <div class="mt-3"><button type="submit" class="btn btn-primary">Salvar</button></div>
+    </form>
+</div>
