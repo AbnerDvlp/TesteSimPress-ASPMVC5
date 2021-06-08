@@ -17,7 +17,7 @@ namespace MVC_TesteSimpress.Business
         public void AtualizarProduto(Produto produto)
         {
             ProdutoRepositorio novoProduto = new ProdutoRepositorio();
-            novoProduto.Create(produto);
+            novoProduto.Update(produto);
         }
 
         public void DeletarProduto(int id)

@@ -48,17 +48,11 @@ namespace SimpressTeste.Controllers
         [HttpPost]
         public void AtualizarProduto()
         {
-            //string a = Request["Perecivel"];
+           
             var produto = new Produto();
-            bool ativo = false;
-            if (Convert.ToBoolean(Request["Ativo"]))
-                ativo = true;
-            else
-                ativo = false;
-
             produto.nome = Request["Nome"];
             produto.descricao = Request["Descricao"];
-            produto.ativo = ativo;
+            produto.ativo = Convert.ToBoolean(Request["Ativo"]);
             produto.perecivel = Convert.ToBoolean(Request["Perecivel"]);
             produto.idCategoria = Convert.ToInt32(Request["CategoriaID"]);
 
@@ -69,7 +63,6 @@ namespace SimpressTeste.Controllers
         [HttpGet]
         public ActionResult EditarProduto(int id)
         {
-           
             var produto = produtoBusiness.BuscarProduto(id);
             ViewBag.Produto = produto;
 
@@ -85,8 +78,5 @@ namespace SimpressTeste.Controllers
             produtoBusiness.DeletarProduto(id);
             Response.Redirect("/produtos");
         }
-
-       
-
     }
 }
